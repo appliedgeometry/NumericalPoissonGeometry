@@ -3,7 +3,6 @@
 A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, with the following functions:
 
 | **num_bivector_field**        | **num_bivector_to_matrix**    | **num_poisson_bracket**           |
-|:-----------------------------:|:-----------------------------:|:---------------------------------:|
 | **num_hamiltonian_vf**        | **num_sharp_morphism**        | **num_coboundary_operator**       |
 | **num_modular_vf**            | **num_curl_operator**         | **num_one_forms_bracket**         |
 | **num_gauge_transformation**  | **num_linear_normal_form_R3** | **num_flaschka_ratiu_bivector**   |
