@@ -2,14 +2,11 @@
 # `NumericalPoissonGeometry`
 A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, with the following functions:
 
-| **poisson_bracket**       | **hamiltonian_vf**            | **lichnerowicz_poisson_operator** |
-|:-------------------------:|:-----------------------------:|:---------------------------------:|
-| **modular_vf**            | **curl_operator**             | **flaschka_ratiu_bivector**       |
-| **sharp_morphism**        | **bivector_to_matrix**        | **jacobiator**                    |
-| **one_forms_bracket**     | **gauge_transformation**      | **is_homogeneous_unimodular**     |
-| **linear_normal_form_R3** | **isomorphic_lie_poisson_R3** | **is_in_kernel**                  |
-| **is_poisson_tensor**     | **is_casimir**                | **is_poisson_vf**                 | 
-|                           | **is_poisson_pair**           |                                   |
+| **num_bivector_field**        | **num_bivector_to_matrix**    | **num_poisson_bracket**           |
+|:---------------------------- :|:-----------------------------:|: --------------------------------:|
+| **num_hamiltonian_vf**        | **num_sharp_morphism**        | **num_coboundary_operator**       |
+| **num_modular_vf**            | **num_curl_operator**         | **num_one_forms_bracket**         |
+| **num_gauge_transformation**  | **num_linear_normal_form_R3** | **num_flaschka_ratiu_bivector**   |
 
 <!--
 This repository accompanies our paper ['On Computational Poisson Geometry I: Symbolic Foundations'](https://arxiv.org/abs/1912.01746).
@@ -111,9 +108,7 @@ This work is developed and maintained by:
 -->
 
 ## Acknowledgments ##
-<!--
-This work was partially supported by the grants “Programa para un Avance Global e Integrado de la Matemática Mexicana” CONACyT FORDECYT 26566 and "Aprendizaje Geométrico Profundo" UNAM-DGAPA-PAPIIT-IN104819.
--->
+This work was partially supported by the grants CONACyT and "Aprendizaje Geométrico Profundo" UNAM-DGAPA-PAPIIT-IN104819.
 
 <!-- 
 ## Do not forget.
