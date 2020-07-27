@@ -16,25 +16,13 @@ This repository accompanies our paper ['On Computational Poisson Geometry I: Sym
 <!-- For more information you can read the [wiki](https://github.com/mevangelista-alvarado/poisson_geometry/wiki) this project. or the our [documentation]()-->
 
 ## Motivation
-<!--
-Some of the functions in this module have been used to obtain the results in these articles:
 
- * L.  C.  Garcia-Naranjo,  P.  Suárez-Serrato & R.  Vera, <br/>
- [Poisson Structures on Smooth 4-Manifolds](https://link.springer.com/article/10.1007/s11005-015-0792-8), <br/> 
-   Lett. Math. Phys. 105, 1533-1550 (2015)
-   
- * P. Suárez-Serrato & J. Torres-Orozco, <br/>
- [Poisson Structures on Wrinkled Fibrations](https://link.springer.com/article/10.1007/s40590-015-0072-8),  <br/>
-   Bol. Soc.Mat. Mex. 22, 263-280 (2016)
-   
- * P. Suárez-Serrato, J. Torres Orozco, & R. Vera, <br/>
- [Poisson and Near-Symplectic Structures on Generalized Wrinkled Fibrations in Dimension 6](https://link.springer.com/article/10.1007/s10455-019-09651-2),  <br/>
-   Ann. Glob. Anal. Geom. (2019) 55, 777-804 (2019)
-   
- * M. Evangelista-Alvarado, P. Suárez-Serrato, J. Torres-Orozco & R. Vera, <br/>
- [On Bott-Morse Foliations and their Poisson Structures in Dimension 3](http://journalofsingularities.org/volume19/article2.html),  <br/>
-   Journal of Singularities 19, 19-33 (2019)
--->
+This project is the numeric implementation of the following work:
+
+* Miguel Evangelista-Alvarado, José C. Ruíz Pantaleón & P. Suárez-Serrato, <br/>
+ [On Computational Poisson Geometry I: Symbolic Foundations](https://arxiv.org/pdf/1912.01746.pdf), <br/> 
+   arXiv:1912.01746 [math.DG] (2019)
+
 
 ## 🚀
 <!--- #### Testing: --->
@@ -83,18 +71,16 @@ Some of the functions in this module have been used to obtain the results in the
 Calculate Poisson Cohomology with linear coefficients.-->
 
 ## Bugs & Contributions
-<!--
-Our issue tracker is at https://github.com/appliedgeometry/poissongeometry/issues. Please report any bugs that you find. Or, even better, if you are interested in our project you can fork the repository on GitHub and create a pull request. 
--->
+Our issue tracker is at https://github.com/appliedgeometry/poissongeometry/issues. Please report any bugs that you find. Or, even better, if you are interested in our project you can fork the repository on GitHub and create a pull request.
 
 ## Licence 📄
 MIT licence
 
 ## Authors ✒️
 This work is developed and maintained by:
- * **Miguel Evangelista-Alvarado** - [@mevangelista-alvarado](https://github.com/mevangelista-alvarado)
  * **José C. Ruíz Pantaleón** - [@jcrpanta](https://github.com/jcrpanta)
  * **Pablo Suárez Serrato** - [@psuarezserrato](https://github.com/psuarezserrato)
+ * **Miguel Evangelista-Alvarado** - [@mevangelista-alvarado](https://github.com/mevangelista-alvarado)
 
 ## Thanks for citing our work if you use it! 🤓 ##
 <!--
