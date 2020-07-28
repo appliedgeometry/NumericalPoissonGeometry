@@ -17,4 +17,4 @@ for k in range(25):
     tiempos[k] = (B - A).total_seconds()
 
 print(f'tiempos: {tiempos}')
-print(f'Promedio = {stat.mean(tiempos.values())}\nDS = {stat.pstdev(tiempos.values())}\n'
+print(f'Promedio = {stat.mean(tiempos.values())}\nDS = {stat.pstdev(tiempos.values())}\n')
