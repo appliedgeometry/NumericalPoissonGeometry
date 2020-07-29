@@ -629,7 +629,7 @@ class NumPoissonGeometry:
         ii_sharp_beta_D_alpha_eval = map(lambda e1, e2: np.dot(e1 - e1.T, e2), D_alpha_eval, sharp_beta_eval)
 
         """ This block calculate d_P(alpha,beta) that is the same to d(<beta,P#(alpha)>) """
-        sharp_alpha_vect = vector_of(self.pg.dim.sharp_morphism(bivector, one_form_1), self.dim)
+        sharp_alpha_vect = vector_of(self.pg.sharp_morphism(bivector, one_form_1), self.dim)
         pairing_sharp_alpha_beta = (sym.transpose(sharp_alpha_vect) * beta_vect)[0]
         grad_pairing = sym.Matrix(sym.derive_by_array(pairing_sharp_alpha_beta, self.coords))
         # lambdify the grad_pairing variable
