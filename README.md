@@ -1,5 +1,5 @@
 
-# `NumericalPoissonGeometry`
+# Numerical Poisson Geometry
 A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, with the following functions:
 
 | **num_bivector_field**        | **num_bivector_to_matrix**    | **num_poisson_bracket**           |
