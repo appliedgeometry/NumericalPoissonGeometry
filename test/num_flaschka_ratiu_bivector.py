@@ -10,7 +10,7 @@ functions = ['1/2*x4', '-x1**2 + x2**2 + x3**2']
 
 num_flaschka_ratiu_bivector_res = dict()
 for i in [2, 3, 4, 5, 6]:
-    print(f'step {i}')
+    print(f'Step: {i}')
     Qmesh_10_4 = np.random.rand(10**i, 4)
     tiempos = dict()
     for k in range(25):
