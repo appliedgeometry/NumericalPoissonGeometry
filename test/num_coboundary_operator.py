@@ -12,8 +12,8 @@ W = {(1,): 'x1 * x3 * exp(-1/(x1**2 + x2**2 - x3**2)**2) / (x1**2 + x2**2)',
      (3,): 'exp(-1 / (x1**2 + x2**2 - x3**2)**2)'}
 
 num_coboundary_operator_res = dict()
-Qmesh_10_3 = np.random.rand(10**3, 3)
 for i in [2, 3, 4, 5, 6]:
+    Qmesh_10_3 = np.random.rand(10**i, 3)
     tiempos = dict()
     for k in range(25):
         A = datetime.datetime.now()
