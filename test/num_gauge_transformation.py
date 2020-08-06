@@ -18,7 +18,7 @@ for mesh_path in ['3Qmesh_10_2.npy', '3Qmesh_10_3.npy', '3Qmesh_10_4.npy', '3Qme
         mesh = np.load(f)
     for k in range(25):
         A = datetime.datetime.now()
-        npg.num_gauge_transformation(P_so3, Lambda, Qmesh_10_3 , pt_output=True)
+        npg.num_gauge_transformation(P_so3, Lambda, mesh, pt_output=True)
         B = datetime.datetime.now()
         tiempos[k] = (B - A).total_seconds()
     promedio = stat.mean(tiempos.values())
