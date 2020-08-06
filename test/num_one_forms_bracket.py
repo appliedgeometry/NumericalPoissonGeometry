@@ -10,19 +10,23 @@ alpha = {(5,): 1}
 beta = {(6,): 1}
 
 num_one_forms_bracket_res = dict()
-for i in [2, 3, 4, 5, 6]:
-    print(f'step {i}')
-    Qmesh_10_3 = np.random.rand(10**i, 6)
+j = 2
+for mesh_path in ['3Qmesh_10_2.npy', '3Qmesh_10_3.npy' , '3Qmesh_10_4.npy' , '3Qmesh_10_5.npy', '3Qmesh_10_6.npy', '3Qmesh_10_7.npy']:
+    print(f'step {j}')
     tiempos = dict()
+    with open(mesh_path, 'rb') as f:
+        mesh = np.load(f)
     for k in range(25):
         A = datetime.datetime.now()
-        npg.num_one_form_bracket(P, alpha, beta, Qmesh_10_3 , pt_output=True)
+        npg.num_one_form_bracket(P, alpha, beta, mesh, pt_output=True)
         B = datetime.datetime.now()
         tiempos[k] = (B - A).total_seconds()
-    num_one_forms_bracket_res[f'10**{i}'] = tiempos
+    promedio = stat.mean(tiempos.values())
+    desviacion = stat.pstdev(tiempos.values())
+    tiempos['promedios'] = promedio
+    tiempos['desviacion'] = desviacion
+    num_one_forms_bracket_res[f'10**{j}'] = tiempos
+    j = j + 1
 
 print(num_one_forms_bracket_res)
 print('Finish')
-
-# print(f'tiempos: {tiempos}')
-# print(f'Promedio = {stat.mean(tiempos.values())}\nDS = {stat.pstdev(tiempos.values())}\n')
