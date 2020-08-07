@@ -16,7 +16,6 @@ for mesh_path in ['4Qmesh_10_2.npy', '4Qmesh_10_3.npy', '4Qmesh_10_4.npy', '4Qme
     with open(mesh_path, 'rb') as f:
         mesh = np.load(f)
     for k in range(25):
-        print(f'Step: {k}')
         A = datetime.datetime.now()
         npg.num_flaschka_ratiu_bivector(functions, mesh, pt_output=True)
         B = datetime.datetime.now()
