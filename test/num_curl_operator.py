@@ -25,6 +25,7 @@ for mesh_path in ['4Qmesh_10_2.npy', '4Qmesh_10_3.npy', '4Qmesh_10_4.npy', '4Qme
     tiempos['promedios'] = promedio
     tiempos['desviacion'] = desviacion
     num_curl_operator_res[f'10**{j}'] = tiempos
+    j = j + 1
 
 print(num_curl_operator_res)
 print('Finish')
