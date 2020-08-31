@@ -10,7 +10,7 @@ functions = ['1/2*x4', '-x1**2 + x2**2 + x3**2']
 
 num_flaschka_ratiu_bivector_res = dict()
 j = 2
-for mesh_path in ['4Qmesh_10_2.npy', '4Qmesh_10_3.npy', '4Qmesh_10_4.npy', '4Qmesh_10_5.npy', '4Qmesh_10_6.npy', '4Qmesh_10_7.npy']:
+for mesh_path in ['4Qmesh_10_2.npy', '4Qmesh_10_3.npy', '4Qmesh_10_4.npy', '4Qmesh_10_5.npy', '4Qmesh_10_6.npy', '4Qmesh_10_7.npy', '4Qmesh_10_8.npy', '4Qmesh_10_9.npy']:
     print(f'step {j}')
     tiempos = dict()
     with open(mesh_path, 'rb') as f:
@@ -29,6 +29,3 @@ for mesh_path in ['4Qmesh_10_2.npy', '4Qmesh_10_3.npy', '4Qmesh_10_4.npy', '4Qme
 
 print(num_flaschka_ratiu_bivector_res)
 print('Finish')
-
-# print(f'tiempos: {tiempos}')
-# print(f'Promedio = {stat.mean(tiempos.values())}\nDS = {stat.pstdev(tiempos.values())}\n')
