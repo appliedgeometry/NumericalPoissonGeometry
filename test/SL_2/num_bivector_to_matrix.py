@@ -25,6 +25,7 @@ for mesh_path in ['3Qmesh_10_2.npy', '3Qmesh_10_3.npy', '3Qmesh_10_4.npy', '3Qme
     tiempos['promedios'] = promedio
     tiempos['desviacion'] = desviacion
     num_bivector_to_matrix_res[f'10**{j}'] = tiempos
+    print(tiempos)
     j = j + 1
 
 print(num_bivector_to_matrix_res)
