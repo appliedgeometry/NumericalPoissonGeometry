@@ -6,7 +6,7 @@ from numpoisson.numpoisson import NumPoissonGeometry
 
 print('Start')
 npg = NumPoissonGeometry(3, 'x')
-P_sl2 = {(1, 2): 'x3', (1, 3): 'x2', (2, 3): 'x1'}
+P_sl2 = {(1, 2): '-x3', (1, 3): '-x2', (2, 3): 'x1'}
 
 num_bivector_res = dict()
 j = 2
