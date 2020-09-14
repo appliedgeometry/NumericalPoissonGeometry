@@ -6,7 +6,7 @@ from numpoisson.numpoisson import NumPoissonGeometry
 
 npg = NumPoissonGeometry(3, 'x')
 P_sl2 = {(1, 2): '-x3', (1, 3): '-x2', (2, 3): 'x1'}
-h = '(x1**2)/2 + (x2**2)/2 + (x3**2)/2'
+h = '(x1**2)/2 + (x2**2)/2 - (x3**2)/2'
 
 num_hamiltonian_vf_res = dict()
 j = 2
