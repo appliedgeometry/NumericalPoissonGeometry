@@ -6,7 +6,7 @@ from numpoisson.numpoisson import NumPoissonGeometry
 
 print('Start')
 npg = NumPoissonGeometry(3, 'x')
-P_sl2 = {(1,2): '-x3', (1,3): '-x2', (2,3): 'x1'}
+P_sl2 = {(1, 2): '-x3', (1, 3): '-x2', (2, 3): 'x1'}
 
 num_modular_vf_res = dict()
 j = 2
@@ -17,7 +17,7 @@ for mesh_path in ['3Qmesh_10_2.npy', '3Qmesh_10_3.npy', '3Qmesh_10_4.npy', '3Qme
         mesh = np.load(f)
     for k in range(25):
         A = datetime.datetime.now()
-        npg.num_modular_vf(P_sl2, 1, mesh , pt_output=True)
+        npg.num_modular_vf(P_sl2, 1, mesh, pt_output=True)
         B = datetime.datetime.now()
         tiempos[k] = (B - A).total_seconds()
     promedio = stat.mean(tiempos.values())
