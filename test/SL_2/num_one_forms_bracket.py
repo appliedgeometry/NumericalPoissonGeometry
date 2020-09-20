@@ -4,7 +4,7 @@ import numpy as np
 import statistics as stat
 from numpoisson.numpoisson import NumPoissonGeometry
 
-npg = NumPoissonGeometry(6, 'x')
+npg = NumPoissonGeometry(3, 'x')
 P = {(1, 2): '-x3', (1, 3): '-x2', (2, 3): 'x1'}
 alpha = {(1,): 'x1', (2,): 'x2', (3, ): '-x3'}
 beta = {(1,): '1', (2,): '1', (3,): '1'}
