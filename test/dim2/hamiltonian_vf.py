@@ -11,7 +11,7 @@ h = 'x1 + x2'
 
 num_hamiltonian_vf_res = dict()
 j = 2
-for mesh_path in ['2Qmesh_10_2.npy', '2Qmesh_10_3.npy', '2Qmesh_10_4.npy', '2Qmesh_10_5.npy', '2Qmesh_10_6.npy', '2Qmesh_10_7.npy', '2Qmesh_10_8.npy']:
+for mesh_path in ['2Qmesh_10_2.npy', '2Qmesh_10_3.npy', '2Qmesh_10_4.npy', '2Qmesh_10_5.npy', '2Qmesh_10_6.npy', '2Qmesh_10_7.npy']:
     print(f'step {j}')
     tiempos = dict()
     with open(mesh_path, 'rb') as f:
