@@ -5,7 +5,7 @@ import statistics as stat
 from numpoisson.numpoisson import NumPoissonGeometry
 
 print('Start')
-npg = NumPoissonGeometry(3, 'x')
+npg = NumPoissonGeometry(2, 'x')
 P = {(1, 2): '(x1/2 + 1/4)'}
 Lambda = {(1, 2): '1'}
 
