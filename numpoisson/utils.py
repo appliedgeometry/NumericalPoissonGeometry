@@ -261,7 +261,7 @@ def show_coordinates(coordinates):
     """
         This method shows the current coordinates from Numerical Poisson Geometry Class
     """
-    if len(coordinates) > 2:
+    if len(coordinates) > 1:
         return f'({coordinates[0]},...,{coordinates[-1]})'
     else:
         raise DimensionError("Dimension do not sufficient")
@@ -274,7 +274,7 @@ def validate_dimension(dimension):
     if not isinstance(dimension, int):
         raise TypeError("Your variable is not a int type")
 
-    if dimension < 2:
+    if dimension < 1:
         raise DimensionError("Your dimension is not greater than two")
     else:
         return dimension
