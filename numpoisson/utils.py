@@ -226,7 +226,11 @@ def add_tensor_values(multivector, tensor_base, index_base):
     if multivector == {0: 0}:
         return tensor_base
 
-    # TODO multivector of dimension 1
+    # TODO Check logic to multivector of dimension 1
+    if len(index_base) == 0:
+        for i in multivector.keys():
+            tensor_base[i[0]-1] = multivector[i]
+        return tensor_base
 
     for key in multivector.keys():
         # TODO Arreglar de mayor a menor
