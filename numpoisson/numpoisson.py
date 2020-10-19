@@ -519,15 +519,18 @@ class NumPoissonGeometry:
         """
         image_bivector = self.pg.lichnerowicz_poisson_operator(bivector, multivector)
         dict_eval = dict_mesh_eval(image_bivector, mesh, self.pg.coords)
-        multivector_dim = check_multivector_dim(bivector) + check_multivector_dim(multivector) - 1
-        # This block creates an evalutes numerically an multivector
-        np_array = []
-        for item in dict_eval:
-            tensor_base, index_base = create_tensor_base(self.pg.dim, multivector_dim)
-            result = add_tensor_values(item, tensor_base, index_base)
-            np_array.append(result.tolist())
-        # Add all evaluation in np array
-        np_result = np.array(np_array)
+        if isinstance(image_bivector, int):
+            np_result = np.array(dict_eval)
+        else:
+            multivector_dim = check_multivector_dim(bivector) + check_multivector_dim(multivector) - 1
+            # This block creates an evalutes numerically an multivector
+            np_array = []
+            for item in dict_eval:
+                tensor_base, index_base = create_tensor_base(self.pg.dim, multivector_dim)
+                result = add_tensor_values(item, tensor_base, index_base)
+                np_array.append(result.tolist())
+            # Add all evaluation in np array
+            np_result = np.array(np_array)
         # return the result in dictionary type
         if dict_output:
             return dict_eval
