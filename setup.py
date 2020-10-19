@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='numericalpoissongeometry',
-    version='0.0.3',
+    version='0.0.5',
     author="Miguel Evangelista-Alvarado, Jose C. Crispín Ruíz, Pablo Suárez-Serrato",
     author_email="miguel.eva.alv@gmail.com, jcpanta@im.unam.mx, pablo@im.unam.mx",
     license="MIT",
