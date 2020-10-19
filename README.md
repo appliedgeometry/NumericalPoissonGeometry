@@ -71,7 +71,7 @@ This project includes numerical methods that implementation parts of:
 Calculate Poisson Cohomology with linear coefficients.-->
 
 ## Bugs & Contributions
-Our issue tracker is at https://github.com/appliedgeometry/poissongeometry/issues. Please report any bugs that you find. Or, even better, if you are interested in our project you can fork the repository on GitHub and create a pull request.
+Our issue tracker is at https://github.com/appliedgeometry/NumericalPoissonGeometry/issues. Please report any bugs that you find. Or, even better, if you are interested in our project you can fork the repository on GitHub and create a pull request.
 
 ## Licence 📄
 MIT licence
