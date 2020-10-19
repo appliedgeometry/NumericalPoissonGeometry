@@ -158,9 +158,7 @@ def check_multivector_dim(multivector):
 
 
 def dicts_to_matrices(dict_list, dim):
-    """
-        PENDIENTE
-    """
+    """"""
     results = []
     for dict_element in dict_list:
         base_matrix = np.zeros((dim, 1)) if check_multivector_dim(dict_list[0]) == 1 else np.zeros((dim, dim))
@@ -177,19 +175,16 @@ def dicts_to_matrices(dict_list, dim):
 
 
 def create_tensor_base(dim, multivector_dim):
-    """
-        PENDIENTE
-    """
+    """"""
     # Create all combinations from multivector_dim in dim
     combs = list(itertools.combinations(range(1, dim+1), multivector_dim))
     # Get all multi-index from a multivector base
     tensor_index = list()
     index_position_aux = list()
     if multivector_dim == 0:
-        # return the same string that user input
-        return torch.zeros(1, dim)
+        zero_tensor = torch.zeros(1, dim)
     if multivector_dim == dim:
-        return torch.zeros(1, 1)
+        zero_tensor = torch.zeros(1, 1)
     if multivector_dim == 1:
         zero_tensor = torch.zeros((dim, 1))
     if multivector_dim == 2:
@@ -220,9 +215,7 @@ def create_tensor_base(dim, multivector_dim):
 
 
 def add_tensor_values(multivector, tensor_base, index_base):
-    """
-        PENDIENTE
-    """
+    """"""
     if multivector == {0: 0}:
         return tensor_base
 
