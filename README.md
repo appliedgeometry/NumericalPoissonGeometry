@@ -9,9 +9,7 @@ A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, wit
 | **num_gauge_transformation**  | **num_linear_normal_form_R3** | **num_flaschka_ratiu_bivector**   |
 
 
-<!--
-This repository accompanies our paper ['On Computational Poisson Geometry I: Symbolic Foundations'](https://arxiv.org/abs/1912.01746).
--->
+This repository accompanies our paper ['On Computational Poisson Geometry II: Numerical Methods}'](https://arxiv.org/abs/2010.09785).
 
 <!-- For more information you can read the [wiki](https://github.com/mevangelista-alvarado/poisson_geometry/wiki) this project. or the our [documentation]()-->
 
@@ -83,16 +81,14 @@ This work is developed and maintained by:
  * **Miguel Evangelista-Alvarado** - [@mevangelista-alvarado](https://github.com/mevangelista-alvarado)
 
 ## Thanks for citing our work if you use it! 🤓 ##
-<!--
-@misc{evangelistaalvarado2019computational,<br/>
-    title={On Computational Poisson Geometry I: Symbolic Foundations},<br/>
-    author={M. A. Evangelista-Alvarado and J. C. Ruíz-Pantaleón and P. Suárez-Serrato},<br/>
-    year={2019},<br/>
-    eprint={1912.01746},<br/>
-    archivePrefix={arXiv},<br/>
-    primaryClass={math.DG}<br/>
+@misc{evangelistaalvarado2020computational,<br/>
+      title={On Computational Poisson Geometry II: Numerical Methods}, <br/>
+      author={M. Evangelista-Alvarado and J. C. Ruíz-Pantaleón and P. Suárez-Serrato},<br/>
+      year={2020},<br/>
+      eprint={2010.09785},<br/>
+      archivePrefix={arXiv},<br/>
+      primaryClass={math.DG}<br/>
 }
--->
 
 ## Acknowledgments ##
 This work was partially supported by the grants CONACyT and "Aprendizaje Geométrico Profundo" UNAM-DGAPA-PAPIIT-IN104819.
