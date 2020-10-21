@@ -9,7 +9,7 @@ A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, wit
 | **num_gauge_transformation**  | **num_linear_normal_form_R3** | **num_flaschka_ratiu_bivector**   |
 
 
-This repository accompanies our paper ['On Computational Poisson Geometry II: Numerical Methods}'](https://arxiv.org/abs/2010.09785).
+This repository accompanies our paper ['On Computational Poisson Geometry II: Numerical Methods'](https://arxiv.org/abs/2010.09785).
 
 <!-- For more information you can read the [wiki](https://github.com/mevangelista-alvarado/poisson_geometry/wiki) this project. or the our [documentation]()-->
 
