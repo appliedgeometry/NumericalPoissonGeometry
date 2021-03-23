@@ -1,8 +1,8 @@
 [![Python](https://img.shields.io/pypi/pyversions/numericalpoissongeometry.svg?style=plastic)]()
 [![PyPI](https://badge.fury.io/py/numericalpoissongeometry.svg)](https://pypi.org/project/numericalpoissongeometry/)
-<!--[![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://colab.research.google.com/drive/1XYcaJQ29XwkblXQOYumT1s8_00bHUEKZ) -->
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/git/git-scm.com/blob/master/MIT-LICENSE.txt)
 ![GitHub last commit](https://img.shields.io/github/last-commit/appliedgeometry/numericalpoissongeometry)
+<!--[![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://colab.research.google.com/drive/1XYcaJQ29XwkblXQOYumT1s8_00bHUEKZ) -->
 
 ---
 # Numerical Poisson Geometry
