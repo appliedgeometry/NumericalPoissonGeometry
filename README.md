@@ -1,4 +1,10 @@
+[![Python](https://img.shields.io/pypi/pyversions/numericalpoissongeometry.svg?style=plastic)]()
+[![PyPI](https://badge.fury.io/py/numericalpoissongeometry.svg)](https://pypi.org/project/numericalpoissongeometry/)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/git/git-scm.com/blob/master/MIT-LICENSE.txt)
+![GitHub last commit](https://img.shields.io/github/last-commit/appliedgeometry/numericalpoissongeometry)
+<!--[![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://colab.research.google.com/drive/1XYcaJQ29XwkblXQOYumT1s8_00bHUEKZ) -->
 
+---
 # Numerical Poisson Geometry
 A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, with the following functions:
 
@@ -90,12 +96,12 @@ This work is developed and maintained by:
       primaryClass={math.DG}<br/>
 }
 
-## Acknowledgments ##
-This work was partially supported by the grants CONACyT and "Aprendizaje Geométrico Profundo" UNAM-DGAPA-PAPIIT-IN104819.
+## Acknowledgments
+This work was partially supported by the grants CONACyT, “Programa para un Avance Global e Integrado de la Matemática Mexicana” CONACyT-FORDECYT 26566 and "Aprendizaje Geométrico Profundo" UNAM-DGAPA-PAPIIT-IN104819. JCRP wishes to also thank CONACyT for a postdoctoral fellowship held during the production of this work.
 
-<!-- 
-## Do not forget.
-* Comment to others about this project 📢
-* Cite this project if you use it 🤓.
-* Finally, if you know one of the authors, invite him a beer🍺.
 ---
+
+<p align="center">
+  <img src="https://www.matem.unam.mx/++theme++im-theme-blue/images/unam-escudo-azul.png">
+  <img src="https://www.matem.unam.mx/++theme++im-theme-blue/images/logo_imunam.png">
+</p>
