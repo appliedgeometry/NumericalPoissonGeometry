@@ -386,7 +386,7 @@ class NumPoissonGeometry:
         dgg_num_vec = list_mesh_eval(d_gg, mesh, self.coords)
         # Evaluates the Hamiltonian vector field with function_1 in each point from a mesh and converts to Numpy
         ham_ff_num_vec = self.num_hamiltonian_vf(bivector, function_1, mesh)
-        raw_result = map(lambda e1, e2: np.dot(e1, e2), dgg_num_vec, ham_ff_num_vec)
+        raw_result = map(lambda e1, e2: np.dot(e1, e2)[0], dgg_num_vec, ham_ff_num_vec)
         np_result = np.array(tuple(raw_result))
         # return the result in a PyTorch tensor if the flag is True
         if pt_output:
