@@ -38,7 +38,7 @@ class NumPoissonGeometry:
         # Intances Poisson Geometry package
         self.pg = PoissonGeometry(self.dim, self.variable)
 
-    def num_bivector(self, bivector, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_bivector(self, bivector, mesh, torch_output=False, tf_output=False, dict_output=False):
         """ Evaluates a bivector field into at each point of the mesh.
 
         Parameters
@@ -77,7 +77,7 @@ class NumPoissonGeometry:
                 [[[ 0.  1. -0.]
                   [-1.  0.  0.]
                   [ 0. -0.  0.]]], shape=(1, 3, 3), dtype=float64)
-            >>> npg3.num_bivector(bivector, mesh, pt_output=True)
+            >>> npg3.num_bivector(bivector, mesh, torch_output=True)
                 tensor([[[ 0.,  1., -0.],
                          [-1.,  0.,  0.],
                          [ 0., -0.,  0.]]], dtype=torch.float64)
@@ -100,7 +100,7 @@ class NumPoissonGeometry:
         np_result = np.array(raw_result)
 
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -111,7 +111,7 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_bivector_to_matrix(self, bivector, mesh, pt_output=False, tf_output=False):
+    def num_bivector_to_matrix(self, bivector, mesh, torch_output=False, tf_output=False):
         """ Evaluates a matrix of a 2-contravariant tensor field or bivector field into a mesh.
 
         Parameters
@@ -150,7 +150,7 @@ class NumPoissonGeometry:
                 [[[ 0.  1.  0.]
                   [-1.  0.  0.]
                   [-0. -0.  0.]]], shape=(1, 3, 3), dtype=float64)
-            >>> npg3.num_bivector_to_matrix(bivector, mesh, pt_output=True)
+            >>> npg3.num_bivector_to_matrix(bivector, mesh, torch_output=True)
             >>> tensor([[[ 0.,  1.,  0.],
                          [-1.,  0.,  0.],
                          [-0., -0.,  0.]]], dtype=torch.float64)
@@ -171,7 +171,7 @@ class NumPoissonGeometry:
         # Evaluates all point from the mesh in the bivector and save in a np array
         np_result = np.array(raw_result)
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -180,7 +180,7 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_sharp_morphism(self, bivector, one_form, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_sharp_morphism(self, bivector, one_form, mesh, torch_output=False, tf_output=False, dict_output=False):
         """
             Evaluates the image of a differential 1-form under the vector bundle morphism 'sharp' P #: T * M -> TM
             defined by P # (alpha): = i_ (alpha) P in the points from a mesh given, where P is a Poisson bivector
@@ -221,7 +221,7 @@ class NumPoissonGeometry:
             >>> [[[-0.]
                   [-0.]
                   [-0.]]]
-            >>> npg3.num_sharp_morphism(bivector, one_form, mesh, pt_output=True)
+            >>> npg3.num_sharp_morphism(bivector, one_form, mesh, torch_output=True)
             >>> tensor([[[-0.],
                          [-0.],
                          [-0.]]], dtype=torch.float64)
@@ -248,7 +248,7 @@ class NumPoissonGeometry:
         np_result = np.array(tuple(raw_result))
 
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -266,7 +266,7 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_hamiltonian_vf(self, bivector, function, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_hamiltonian_vf(self, bivector, function, mesh, torch_output=False, tf_output=False, dict_output=False):
         """
             Evaluates the Hamiltonian vector field of a function relative to a Poisson bivector field in
             the points from a mesh given. The Hamiltonian vector field is calculated as follows: X_h = P#(dh),
@@ -281,7 +281,7 @@ class NumPoissonGeometry:
             Is a function scalar h: M --> R that is a string type.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -308,7 +308,7 @@ class NumPoissonGeometry:
             >>> [[[ 2.5]
                   [-5. ]
                   [ 2.5]]]
-            >>> npg3.num_hamiltonian_vf(bivector, ham_function, mesh, pt_output=True)
+            >>> npg3.num_hamiltonian_vf(bivector, ham_function, mesh, torch_output=True)
             >>> tensor([[[ 2.5000],
                          [-5.0000],
                          [ 2.5000]]], dtype=torch.float64)
@@ -327,11 +327,11 @@ class NumPoissonGeometry:
         d_ff = {(i + 1,): d_ff[i] for i in range(self.dim) if sym.simplify(d_ff[i]) != 0}
         return self.num_sharp_morphism(
             bivector, d_ff, mesh,
-            tf_output=tf_output, pt_output=pt_output, dict_output=dict_output
+            tf_output=tf_output, torch_output=torch_output, dict_output=dict_output
         )
 
     def num_poisson_bracket(self, bivector, function_1, function_2,
-                            mesh, pt_output=False, tf_output=False):
+                            mesh, torch_output=False, tf_output=False):
         """
             Calculates the evaluation of Poisson bracket {f,g} = π(df,dg) = ⟨dg,π#(df)⟩ of two functions f and g in
             a Poisson manifold (M,P) in all point from given a mesh. Where d is the exterior derivatives and
@@ -346,7 +346,7 @@ class NumPoissonGeometry:
             Is a function scalar f: M --> R that is a string type.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -373,7 +373,7 @@ class NumPoissonGeometry:
             >>> # Evaluates the mesh into {f,g}
             >>> npg3.num_poisson_bracket(bivector, function_1, function_2, mesh)
             >>> [-15.]
-            >>> npg3.num_poisson_bracket(bivector, function_1, function_2, mesh, pt_output=True)
+            >>> npg3.num_poisson_bracket(bivector, function_1, function_2, mesh, torch_output=True)
             >>> tensor([-15.], dtype=torch.float64)
             >>> npg3.num_poisson_bracket(bivector, function_1, function_2, mesh, tf_output=True)
             >>> tf.Tensor([-15.], shape=(1,), dtype=float64)
@@ -389,7 +389,7 @@ class NumPoissonGeometry:
         raw_result = map(lambda e1, e2: np.dot(e1, e2)[0], dgg_num_vec, ham_ff_num_vec)
         np_result = np.array(tuple(raw_result))
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -398,7 +398,7 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_curl_operator(self, multivector, function, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_curl_operator(self, multivector, function, mesh, torch_output=False, tf_output=False, dict_output=False):
         """
             Evaluates the divergence of multivector field in all points given of a mesh.
 
@@ -414,7 +414,7 @@ class NumPoissonGeometry:
         :dict_output:
             Is a boolean flag to indicates if the result is given in a bivector in dictionary format, its
             default value is False.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -439,7 +439,7 @@ class NumPoissonGeometry:
                   [ 0.]
                   [ 0.]
                   [ 0.]]]]
-            >>> npg4.num_curl_operator(bivector, function, mesh, pt_output=True)
+            >>> npg4.num_curl_operator(bivector, function, mesh, torch_output=True)
             >>> tensor([[[ 0.],
                          [ 0.],
                          [ 0.],
@@ -458,7 +458,7 @@ class NumPoissonGeometry:
 
         if not bool(multivector):
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -468,7 +468,7 @@ class NumPoissonGeometry:
 
         if isinstance(multivector, str):
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -489,7 +489,7 @@ class NumPoissonGeometry:
         curl_operator = self.pg.curl_operator(multivector, function)
         if not bool(curl_operator):
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -515,7 +515,7 @@ class NumPoissonGeometry:
         np_result = np.array(np_result)
 
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -528,7 +528,7 @@ class NumPoissonGeometry:
         return np_result
 
     def num_coboundary_operator(self, bivector, multivector, mesh,
-                                pt_output=False, tf_output=False, dict_output=False):
+                                torch_output=False, tf_output=False, dict_output=False):
         """
             Evalueates the Schouten-Nijenhuis bracket between a given (Poisson) bivector field and a (arbitrary)
             multivector field in all points given of a mesh.
@@ -548,7 +548,7 @@ class NumPoissonGeometry:
         :dict_output:
             Is a boolean flag to indicates if the result is given in a bivector in dictionary format, its
             default value is False.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -578,7 +578,7 @@ class NumPoissonGeometry:
                   [ 0.        ,  0.        ,  0.        ]]]
             >>> npg3.num_coboundary_operator(bivector, W, mesh, dict_output=True)
             >>> [{(1, 2): 0.36787944117144233}]
-            >>> npg3.num_coboundary_operator(bivector, W, mesh, pt_output=True)
+            >>> npg3.num_coboundary_operator(bivector, W, mesh, torch_output=True)
             >>> tensor([[[ 0.0000,  0.3679,  0.0000],
                          [-0.3679,  0.0000,  0.0000],
                          [ 0.0000,  0.0000,  0.0000]]], dtype=torch.float64)
@@ -590,7 +590,7 @@ class NumPoissonGeometry:
         """
         if not bool(bivector) or not bool(multivector):
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -602,7 +602,7 @@ class NumPoissonGeometry:
             # [P,f] = -X_f, for any function f.
             return self.num_hamiltonian_vf(
                 bivector, f'(-1) * ({multivector})', mesh,
-                pt_output=pt_output, tf_output=tf_output, dict_output=dict_output
+                torch_output=torch_output, tf_output=tf_output, dict_output=dict_output
             )
 
         len_keys = []
@@ -630,7 +630,7 @@ class NumPoissonGeometry:
 
         if deg_mltv + 1 > self.pg.dim:
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -638,10 +638,10 @@ class NumPoissonGeometry:
                 return np.array({})
             return np_result
 
-        image_mltv = self.pg.lichnerowicz_poisson_operator(bivector, multivector)
+        image_mltv = self.pg.coboundary_operator(bivector, multivector)
         if not bool(image_mltv):
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -666,7 +666,7 @@ class NumPoissonGeometry:
         np_result = np.array(np_result)
 
         # return the result in a TensorFlow tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a PyTorch tensor if the flag is True
         if tf_output:
@@ -679,7 +679,7 @@ class NumPoissonGeometry:
         return np_result
 
     def num_one_forms_bracket(self, bivector, one_form_1, one_form_2,
-                              mesh, pt_output=False, tf_output=False, dict_output=False):
+                              mesh, torch_output=False, tf_output=False, dict_output=False):
         """
             Evaluates the Lie bracket of two differential 1-forms induced by a given Poisson bivector field in all
             points given of a mesh.
@@ -698,7 +698,7 @@ class NumPoissonGeometry:
             Is a 1-form differential in a dictionary format with tuple type 'keys' and string type 'values'.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -727,7 +727,7 @@ class NumPoissonGeometry:
             >>> [[[-1.]
                   [ 0.]
                   [ 1.]]]
-            >>> npg3.num_one_forms_bracket(bivector, one_form_1, one_form_2, mesh, pt_output=True)
+            >>> npg3.num_one_forms_bracket(bivector, one_form_1, one_form_2, mesh, torch_output=True)
             >>> tensor([[[-1.],
                          [ 0.],
                          [ 1.]]], dtype=torch.float64)
@@ -747,7 +747,7 @@ class NumPoissonGeometry:
 
         if self.pg.is_in_kernel(bivector, one_form_1) and self.pg.is_in_kernel(bivector, one_form_2):
             np_result = np.array([])
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             if tf_output:
                 return tf.convert_to_tensor(np_result)
@@ -780,7 +780,7 @@ class NumPoissonGeometry:
             np_result = np.array(tuple(raw_result))
 
             # return the result in a PyTorch tensor if the flag is True
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             # return the result in a TensorFlow tensor if the flag is True
             if tf_output:
@@ -817,7 +817,7 @@ class NumPoissonGeometry:
             np_result = np.array(tuple(raw_result))
 
             # return the result in a PyTorch tensor if the flag is True
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result)
             # return the result in a TensorFlow tensor if the flag is True
             if tf_output:
@@ -868,7 +868,7 @@ class NumPoissonGeometry:
         np_result = np.array(tuple(raw_result))
 
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -880,7 +880,7 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_linear_normal_form_R3(self, linear_bivector, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_linear_normal_form_R3(self, linear_bivector, mesh, torch_output=False, tf_output=False, dict_output=False):
         """
             Evaluates a normal form for Lie-Poisson bivector fields on R^3 (modulo linear isomorphisms) in all
             points given of a mesh.
@@ -890,7 +890,7 @@ class NumPoissonGeometry:
             Is a Lie-Poisson bivector in a dictionary format with integer type 'keys' and string type 'values'.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -916,7 +916,7 @@ class NumPoissonGeometry:
             >>> [[[ 0. -1. -1.]
                   [ 1.  0.  1.]
                   [ 1. -1.  0.]]]
-            >>> npg3.num_linear_normal_form_R3(bivector, mesh, pt_output=True)
+            >>> npg3.num_linear_normal_form_R3(bivector, mesh, torch_output=True)
             >>> tensor([[[ 0., -1., -1.],
                          [ 1.,  0.,  1.],
                          [ 1., -1.,  0.]]], dtype=torch.float64)
@@ -935,7 +935,7 @@ class NumPoissonGeometry:
         np_result = self.num_bivector_to_matrix(lin_normal_form, mesh)
 
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -946,7 +946,9 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_gauge_transformation(self, bivector, two_form, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_gauge_transformation(self, bivector, two_form,
+                                 mesh, torch_output=False, tf_output=False,
+                                 dict_output=False):
         """
             This method evaluates the Gauge transformation of a Poisson bivector field in all points given of a mesh.
 
@@ -958,7 +960,7 @@ class NumPoissonGeometry:
             Is a closed differetial form in a dictionary format with tuple type 'keys' and string type 'values'.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -985,7 +987,7 @@ class NumPoissonGeometry:
             >>> [[[ 0.  1. -1.]
                   [-1.  0.  1.]
                   [ 1. -1.  0.]]]
-            >>> npg.num_gauge_transformation(P_so3, Lambda, mesh, pt_output=True)
+            >>> npg.num_gauge_transformation(P_so3, Lambda, mesh, torch_output=True)
             >>> tensor([[[ 0.,  1., -1.],
                          [-1.,  0.,  1.],
                          [ 1., -1.,  0.]]], dtype=torch.float64)
@@ -1007,7 +1009,7 @@ class NumPoissonGeometry:
         raw_result = map(lambda e1, e2: np.dot(e1, e2), bivector_num_mat, inv_I_min_form_bivector)
         np_result = np.array(tuple(raw_result))
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -1020,7 +1022,7 @@ class NumPoissonGeometry:
         return np_result
 
     def num_flaschka_ratiu_bivector(self, casimirs, mesh, symplectic_form=False,
-                                    pt_output=False, tf_output=False, dict_output=False):
+                                    torch_output=False, tf_output=False, dict_output=False):
         """
             Calculate a Poisson bivector from Flaschka-Ratui formula where all Casimir function is in "casimir"
             variable. This Poisson bivector is the following form:
@@ -1034,7 +1036,7 @@ class NumPoissonGeometry:
             Is a list of Casimir functions where each element is a string type.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -1061,7 +1063,7 @@ class NumPoissonGeometry:
                   [ 2.  0. -2.  0.]
                   [-2.  2.  0.  0.]
                   [ 0.  0.  0.  0.]]]
-            >>> npg4.num_flaschka_ratiu_bivector(casimirs, mesh, pt_output=True)
+            >>> npg4.num_flaschka_ratiu_bivector(casimirs, mesh, torch_output=True)
             >>> tensor([[[ 0., -2.,  2.,  0.],
                          [ 2.,  0., -2.,  0.],
                          [-2.,  2.,  0.,  0.],
@@ -1086,7 +1088,7 @@ class NumPoissonGeometry:
             np_result_2f = self.num_bivector_to_matrix(FR_bivector[1], mesh)
 
             # return the result in a PyTorch tensor if the flag is True
-            if pt_output:
+            if torch_output:
                 return torch.from_numpy(np_result_FR), torch.from_numpy(np_result_2f)
             # return the result in a TensorFlow tensor if the flag is True
             if tf_output:
@@ -1101,7 +1103,7 @@ class NumPoissonGeometry:
         np_result = self.num_bivector_to_matrix(FR_bivector, mesh)
 
         # return the result in a PyTorch tensor if the flag is True
-        if pt_output:
+        if torch_output:
             return torch.from_numpy(np_result)
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
@@ -1112,7 +1114,7 @@ class NumPoissonGeometry:
         # return the result in Numpy array
         return np_result
 
-    def num_modular_vf(self, bivector, function, mesh, pt_output=False, tf_output=False, dict_output=False):
+    def num_modular_vf(self, bivector, function, mesh, torch_output=False, tf_output=False, dict_output=False):
         """
             Calculates the modular vector field Z of a given Poisson bivector field P relative to the volume form
             f*Omega_0 defined as Z(g):= div(X_g) where Omega_0 = dx1^...^dx('dim'), f a non zero function and div(X_g)
@@ -1131,7 +1133,7 @@ class NumPoissonGeometry:
             Is a function scalar h: M --> R that is a non zero and is a string type.
         :mesh:
             Is a numpy array where each value is a list of float values that representa a point in R^{dim}.
-        :pt_output/tf_output:
+        :torch_output/tf_output:
             Is a boolean flag to indicates if the result is given in a tensor from PyTorch/TensorFlow, its
             default value is False.
 
@@ -1157,7 +1159,7 @@ class NumPoissonGeometry:
             >>> [[[ 0.]
                   [ 0.]
                   [ 0.]]]
-            >>> npg3.num_modular_vf(bivector, 1, mesh, pt_output=True)
+            >>> npg3.num_modular_vf(bivector, 1, mesh, torch_output=True)
             >>> tf.Tensor(
                 [[[ 0.]
                   [ 0.]
@@ -1172,5 +1174,5 @@ class NumPoissonGeometry:
         bivector = sym.sympify(bivector)
         bivector = {e: (-1) * bivector[e] for e in bivector}
         return self.num_curl_operator(bivector, function,
-                                      mesh, pt_output=pt_output,
+                                      mesh, torch_output=torch_output,
                                       tf_output=tf_output, dict_output=dict_output)
