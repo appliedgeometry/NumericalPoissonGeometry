@@ -27,8 +27,6 @@ This project includes numerical methods that implementation parts of:
  [On Computational Poisson Geometry I: Symbolic Foundations](https://www.aimsciences.org/article/doi/10.3934/jgm.2021018), <br/> 
 Journal of Geometric Mechanics, Vol 13, Issue 4.
 
-https://www.aimsciences.org/article/doi/10.3934/jgm.2021018
-
 ## 🚀
 <!--- #### Testing: --->
 <!-- Solo borrar esto
