@@ -13,8 +13,6 @@ from __future__ import unicode_literals
 import numpy as np
 import sympy as sym
 import permutation as perm
-import torch
-import tensorflow as tf
 from scipy import linalg as splinalg
 from scipy.sparse import csr_matrix, triu
 from poisson.poisson import PoissonGeometry
@@ -23,7 +21,8 @@ from numpoisson.errors import (MultivectorError, FunctionError,
                                DimensionError)
 from numpoisson.utils import (dict_mesh_eval, list_mesh_eval,
                               num_matrix_of, num_vector_of,
-                              zeros_array, validate_dimension)
+                              zeros_array, validate_dimension,
+                              BackendChecker)
 
 
 class NumPoissonGeometry:
@@ -37,6 +36,8 @@ class NumPoissonGeometry:
         self.coords = sym.symbols(f'{self.variable}1:{self.dim + 1}')
         # Intances Poisson Geometry package
         self.pg = PoissonGeometry(self.dim, self.variable)
+        # Backends class
+        self.backends = BackendChecker()
 
     def num_bivector(self, bivector, mesh, torch_output=False, tf_output=False, dict_output=False):
         """ Evaluates a bivector field into at each point of the mesh.
@@ -101,10 +102,18 @@ class NumPoissonGeometry:
 
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             return dict_list
@@ -172,10 +181,18 @@ class NumPoissonGeometry:
         np_result = np.array(raw_result)
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # TODO add dict_output flag
         # return the result in Numpy array
         return np_result
@@ -249,10 +266,18 @@ class NumPoissonGeometry:
 
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             dict_list = []
@@ -324,6 +349,7 @@ class NumPoissonGeometry:
         ff = sym.sympify(function)
         # Calculates the differential matrix of Hamiltonian function
         d_ff = sym.Matrix(sym.derive_by_array(ff, self.coords))
+        # TODO: Check here
         d_ff = {(i + 1,): d_ff[i] for i in range(self.dim) if sym.simplify(d_ff[i]) != 0}
         return self.num_sharp_morphism(
             bivector, d_ff, mesh,
@@ -390,10 +416,18 @@ class NumPoissonGeometry:
         np_result = np.array(tuple(raw_result))
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # TODO add dict_output flag
         # return the result in Numpy array
         return np_result
@@ -456,6 +490,7 @@ class NumPoissonGeometry:
         if sym.simplify(sym.sympify(function)) == 0:
             raise FunctionError(F'Fuction {function} == 0')
 
+        # Quitar
         if not bool(multivector):
             np_result = np.array([])
             if torch_output:
@@ -466,6 +501,7 @@ class NumPoissonGeometry:
                 return np.array({})
             return np_result
 
+        # Quitar
         if isinstance(multivector, str):
             np_result = np.array([])
             if torch_output:
@@ -487,6 +523,7 @@ class NumPoissonGeometry:
             raise MultivectorError('keys with different lengths')
 
         curl_operator = self.pg.curl_operator(multivector, function)
+        # Quitar
         if not bool(curl_operator):
             np_result = np.array([])
             if torch_output:
@@ -516,10 +553,18 @@ class NumPoissonGeometry:
 
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             dict_eval = [{tuple(map(lambda x: x+1, list(e))): dictt[e] for e in dictt} for dictt in dict_eval]
@@ -588,6 +633,7 @@ class NumPoissonGeometry:
                         [-0.36787945,  0.        ,  0.        ],
                         [ 0.        ,  0.        ,  0.        ]]]
         """
+        # Quitar
         if not bool(bivector) or not bool(multivector):
             np_result = np.array([])
             if torch_output:
@@ -627,7 +673,7 @@ class NumPoissonGeometry:
 
         # Degree of multivector
         deg_mltv = len(next(iter(multivector)))
-
+        # Quitar
         if deg_mltv + 1 > self.pg.dim:
             np_result = np.array([])
             if torch_output:
@@ -638,6 +684,7 @@ class NumPoissonGeometry:
                 return np.array({})
             return np_result
 
+        # Quitar
         image_mltv = self.pg.coboundary_operator(bivector, multivector)
         if not bool(image_mltv):
             np_result = np.array([])
@@ -667,10 +714,18 @@ class NumPoissonGeometry:
 
         # return the result in a TensorFlow tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a PyTorch tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             dict_eval = [{tuple(map(lambda x: x+1, list(e))): dictt[e] for e in dictt} for dictt in dict_eval]
@@ -745,6 +800,7 @@ class NumPoissonGeometry:
             if len(tuple(filter(lambda x: (x <= 0), e))) > 0:
                 raise MultivectorError(F"invalid key {e} in {bivector}")
 
+        # Quitar
         if self.pg.is_in_kernel(bivector, one_form_1) and self.pg.is_in_kernel(bivector, one_form_2):
             np_result = np.array([])
             if torch_output:
@@ -781,10 +837,18 @@ class NumPoissonGeometry:
 
             # return the result in a PyTorch tensor if the flag is True
             if torch_output:
-                return torch.from_numpy(np_result)
+                if self.backends.pytorch:
+                    import torch
+                    return torch.from_numpy(np_result)
+                else:
+                    raise RuntimeError("Backend not available. Please install PyTorch")
             # return the result in a TensorFlow tensor if the flag is True
             if tf_output:
-                return tf.convert_to_tensor(np_result)
+                if self.backends.tensorflow:
+                    import tensorflow as tf
+                    return tf.convert_to_tensor(np_result)
+                else:
+                    raise RuntimeError("Backend not available. Please install TensorFlow")
             # return the result in dictionary type
             if dict_output:
                 dicts = [{(i + 1,): e[i][0] for i in range(self.pg.dim) if e[i][0] != 0} for e in np_result]
@@ -818,10 +882,18 @@ class NumPoissonGeometry:
 
             # return the result in a PyTorch tensor if the flag is True
             if torch_output:
-                return torch.from_numpy(np_result)
+                if self.backends.pytorch:
+                    import torch
+                    return torch.from_numpy(np_result)
+                else:
+                    raise RuntimeError("Backend not available. Please install PyTorch")
             # return the result in a TensorFlow tensor if the flag is True
             if tf_output:
-                return tf.convert_to_tensor(np_result)
+                if self.backends.tensorflow:
+                    import tensorflow as tf
+                    return tf.convert_to_tensor(np_result)
+                else:
+                    raise RuntimeError("Backend not available. Please install TensorFlow")
             # return the result in dictionary type
             if dict_output:
                 dicts = [{(i + 1,): e[i][0] for i in range(self.pg.dim) if e[i][0] != 0} for e in np_result]
@@ -869,10 +941,18 @@ class NumPoissonGeometry:
 
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             dicts = [{(i + 1,): e[i][0] for i in range(self.pg.dim) if e[i][0] != 0} for e in np_result]
@@ -936,10 +1016,18 @@ class NumPoissonGeometry:
 
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             return dict_mesh_eval(lin_normal_form, mesh, self.pg.coords)
@@ -1010,10 +1098,18 @@ class NumPoissonGeometry:
         np_result = np.array(tuple(raw_result))
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             dicts = [dict(triu(csr_matrix(e), k=1).todok()) for e in np_result]
@@ -1089,10 +1185,18 @@ class NumPoissonGeometry:
 
             # return the result in a PyTorch tensor if the flag is True
             if torch_output:
-                return torch.from_numpy(np_result_FR), torch.from_numpy(np_result_2f)
+                if self.backends.pytorch:
+                    import torch
+                    return torch.from_numpy(np_result_FR), torch.from_numpy(np_result_2f)
+                else:
+                    raise RuntimeError("Backend not available. Please install PyTorch")
             # return the result in a TensorFlow tensor if the flag is True
             if tf_output:
-                return tf.convert_to_tensor(np_result_FR), tf.convert_to_tensor(np_result_2f)
+                if self.backends.tensorflow:
+                    import tensorflow as tf
+                    return tf.convert_to_tensor(np_result_FR), tf.convert_to_tensor(np_result_2f)
+                else:
+                    raise RuntimeError("Backend not available. Please install TensorFlow")
             # return the result in dictionary type
             if dict_output:
                 return dict_mesh_eval(FR_bivector[0], mesh, self.pg.coords), dict_mesh_eval(FR_bivector[1], mesh, self.pg.coords)  # noqa: E501
@@ -1104,10 +1208,18 @@ class NumPoissonGeometry:
 
         # return the result in a PyTorch tensor if the flag is True
         if torch_output:
-            return torch.from_numpy(np_result)
+            if self.backends.pytorch:
+                import torch
+                return torch.from_numpy(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install PyTorch")
         # return the result in a TensorFlow tensor if the flag is True
         if tf_output:
-            return tf.convert_to_tensor(np_result)
+            if self.backends.tensorflow:
+                import tensorflow as tf
+                return tf.convert_to_tensor(np_result)
+            else:
+                raise RuntimeError("Backend not available. Please install TensorFlow")
         # return the result in dictionary type
         if dict_output:
             return dict_mesh_eval(FR_bivector, mesh, self.pg.coords)

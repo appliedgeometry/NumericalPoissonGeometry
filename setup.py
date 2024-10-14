@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='numericalpoissongeometry',
-    version='1.1.1',
+    version='1.1.2',
     author="Miguel Evangelista-Alvarado, Jose C. Crispín Ruíz, Pablo Suárez-Serrato",
     author_email="miguel.eva.alv@gmail.com, jcpanta@im.unam.mx, pablo@im.unam.mx",
     license="MIT",
@@ -14,7 +14,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/appliedgeometry/NumericalPoissonGeometry",
     packages=setuptools.find_packages(),
-    install_requires=['sympy', 'numpy', 'torch', 'tensorflow', 'poissongeometry', 'permutation', 'scipy'],
+    install_requires=['sympy', 'numpy', 'poissongeometry', 'permutation', 'scipy'],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python :: 3 :: Only",

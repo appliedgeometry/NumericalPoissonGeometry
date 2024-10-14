@@ -147,3 +147,42 @@ def validate_dimension(dim):
         raise DimensionError("Your dimension is not greater than two")
     else:
         return dim
+
+
+class BackendChecker:
+    def __init__(self):
+        self.pytorch = self.check_pytorch()
+        self.tensorflow = self.check_tensorflow()
+        self.backends = self.get_backends()
+
+    def check_pytorch(self):
+        # Verify if PyTorch is avariable
+        try:
+            import torch  # noqa: F401
+            return True
+        except ImportError:
+            return False
+
+    def check_tensorflow(self):
+        # Verify if tensorflow is avariable
+        try:
+            import tensorflow as tf  # noqa: F401
+            return True
+        except ImportError:
+            return False
+
+    def get_backends(self):
+        """ Returns a list of available backends """
+        backends = []
+        if self.pytorch:
+            backends.append("PyTorch")
+        if self.tensorflow:
+            backends.append("TensorFlow")
+        return backends
+
+    def get_backends_info(self):
+        """ Returns a list of available backends """
+        if not bool(self.backends):
+            print("There is no backend (PyTorch or TensorFlow) available. Please install any of them.")
+        else:
+            print(f"Available backends: {self.backends}")
