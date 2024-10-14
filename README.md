@@ -15,7 +15,7 @@ A Python module for (local) Poisson-Nijenhuis calculus on Poisson manifolds, wit
 | **num_gauge_transformation**  | **num_linear_normal_form_R3** | **num_flaschka_ratiu_bivector**   |
 
 
-This repository accompanies our paper ['On Computational Poisson Geometry II: Numerical Methods'](https://arxiv.org/abs/2010.09785).
+This repository accompanies our paper ['On Computational Poisson Geometry II: Numerical Methods'](https://www.aimsciences.org/article/doi/10.3934/jcd.2021012).
 
 <!-- For more information you can read the [wiki](https://github.com/mevangelista-alvarado/poisson_geometry/wiki) this project. or the our [documentation]()-->
 
@@ -23,10 +23,11 @@ This repository accompanies our paper ['On Computational Poisson Geometry II: Nu
 
 This project includes numerical methods that implementation parts of:
 
-* Miguel Evangelista-Alvarado, José C. Ruíz Pantaleón & P. Suárez-Serrato, <br/>
- [On Computational Poisson Geometry I: Symbolic Foundations](https://arxiv.org/pdf/1912.01746.pdf), <br/> 
-   arXiv:1912.01746 [math.DG] (2019)
+* Miguel Evangelista-Alvarado, José C. Ruíz Pantaleón & P. Suárez-Serrato, (2021) <br/> 
+ [On Computational Poisson Geometry I: Symbolic Foundations](https://www.aimsciences.org/article/doi/10.3934/jgm.2021018), <br/> 
+Journal of Geometric Mechanics, Vol 13, Issue 4.
 
+https://www.aimsciences.org/article/doi/10.3934/jgm.2021018
 
 ## 🚀
 <!--- #### Testing: --->
@@ -87,20 +88,21 @@ This work is developed and maintained by:
  * **Miguel Evangelista-Alvarado** - [@mevangelista-alvarado](https://github.com/mevangelista-alvarado)
 
 ## Thanks for citing our work if you use it! 🤓 ##
+```
 @articleInfo{ERS2021,
-title = {On computational Poisson geometry II: Numerical methods},
-journal = {Journal of Computational Dynamics},
-volume = {8},
-number = {3},
-pages = {273-307}
-year = {2021},
-issn = {2158-2491},
-doi = {10.3934/jcd.2021012},
-url = {https://www.aimsciences.org/article/id/6aacf722-3708-40d1-9e7b-770f289551ed},
-author = {Miguel Ángel Evangelista-Alvarado and José Crispín Ruíz-Pantaleón and Pablo Suárez-Serrato},
-keywords = {Poisson structures, Hamiltonian dynamics, Poisson–Nijenhuis calculus, numerical methods, Python}
+	title = {On computational Poisson geometry II: Numerical methods},
+	journal = {Journal of Computational Dynamics},
+	volume = {8},
+	number = {3},
+	pages = {273-307}
+	year = {2021},
+	issn = {2158-2491},
+	doi = {10.3934/jcd.2021012},
+	url = {https://www.aimsciences.org/article/id/6aacf722-3708-40d1-9e7b-770f289551ed},
+	author = {Miguel Ángel Evangelista-Alvarado and José Crispín Ruíz-Pantaleón and Pablo Suárez-Serrato},
+	keywords = {Poisson structures, Hamiltonian dynamics, Poisson–Nijenhuis calculus, numerical methods, Python}
 }
-
+```
 ## Acknowledgments
 This work was partially supported by the grants CONACyT, “Programa para un Avance Global e Integrado de la Matemática Mexicana” CONACyT-FORDECYT 26566 and "Aprendizaje Geométrico Profundo" UNAM-DGAPA-PAPIIT-IN104819. JCRP wishes to also thank CONACyT for a postdoctoral fellowship held during the production of this work.
 
